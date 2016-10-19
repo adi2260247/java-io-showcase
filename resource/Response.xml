@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import name="person">
+	<item>
+		<firstName>Emil</firstName>
+		<lastName>Example</lastName>
+		<addresses>
+			<address>
+				<street>Example Blvd.</street>
+			</address>
+			<address>
+				<street>Example Ave.</street>
+			</address>
+		</addresses>
+	</item>
+</import>

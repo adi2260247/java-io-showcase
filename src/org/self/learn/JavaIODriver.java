@@ -12,6 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import org.json.JSONObject;
+import org.json.XML;
 
 
 public class JavaIODriver {
@@ -24,7 +28,8 @@ public class JavaIODriver {
 		//bufferedIO();
 		//bufferedIOFlush();
 		//bufferedIOFlushnScanner();
-		bufferedIOFlushnScannerAppend();
+		//bufferedIOFlushnScannerAppend();
+		convertToJson();
 	}
 	
 	/**creates byte stream  Any text you write has to be encoded as
@@ -236,5 +241,30 @@ public class JavaIODriver {
             	sc.close();
             }
 		}
+	}
+	
+	/**
+	 * XML to JSON conversion
+	 * Note how Java 8 streaming is used
+	 * to read entire CML file with just
+	 * one line of code.
+	 * <dependency>
+	 * <groupId>org.json</groupId>
+	 * <artifactId>json</artifactId>
+	 * <version>20160810</version>
+	 * </dependency>
+	 * @return
+	 * @throws IOException 
+	 */
+	public static void convertToJson() throws IOException {
+		File source = new File("C:\\Users\\PP04244\\workspace\\java-io\\java-io-showcase\\resource\\Response.xml");
+		BufferedReader reader = new BufferedReader(new FileReader(source));
+		String xmlResponse = reader.lines().collect(Collectors.joining("\n"));
+		JSONObject jsonObject = XML.toJSONObject(xmlResponse);
+		String json = jsonObject.toString();
+		
+		System.out.println("********XML Response********\n"+xmlResponse+"\n\n********JSON Response********\n"+json);
+		
+		reader.close();
 	}
 }
